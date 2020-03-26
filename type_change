@@ -1,0 +1,27 @@
+一. 类 型 变 换 :
+
+    
+    ndarray 类型变换函数用于重构一个数组的数据类型
+
+    
+    <1> new_a = a.astype(new_type)
+
+        res = res.astype(np.int)
+
+        返 回 新 类 型 的 数 组
+
+        参 数 :
+                
+            (1) np.bool     布尔值
+
+            (2) np.int      整型
+ 
+            (3) np.float    浮点型
+
+            (4) np.complex  复数
+
+            (5) np.object   对象
+
+            (6) np.string_  ASCII字符
+
+            (7) np.unicode_ Unicode所有字符,字节数平台决定

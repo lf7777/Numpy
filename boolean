@@ -1,0 +1,23 @@
+一. 布 尔 型 数 组 的 方 法 :
+
+
+    <1>统计运算中,布尔值会被强制转换为1和0,可以使用sum()对布尔型数组中数量做计数
+
+        (1) (arr>0).sum()
+
+        (2) np.count_nonzero(arr>0)
+
+        nonzero 计数_非零
+
+
+    <2> obj.any()
+
+        判断 数组中是否存在一个或多个 True 或 非 0
+
+        返回值 : 1 个 True or False
+
+    <3> obj.all()
+
+        数组中所有制是否都是 True 或 全都 非0 非False
+
+        返回值 : 1 个 True or False

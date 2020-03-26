@@ -1,0 +1,393 @@
+一. 概 览 :
+
+
+    import numpy as np
+
+    数值计算的扩展包,能高效处理N维数组,复杂函数,线性代数
+
+
+    特 点 :
+        
+        (1) numpy 运算为 矢量运算
+
+        (2) The N-dimensional array : N 维数组 (简称 ndarray)
+
+            N维数组类型,它描述了相同类型的 items 的列表
+
+    矢 量 :
+
+        (1) 可无限延展,永不变形 (物理上:既有大小,又有方向)
+
+
+二. N 维 数 组 :
+
+
+    <1> 条 件 :  
+
+        (1) np.array([[1,2,3],[1,2,3]])
+            
+            长度相同的列表 (如不相同,则是 list ,并非多维数组)
+
+    <2> obj.adim = len(obj.shape)
+
+
+
+三. 属 性 :
+
+
+    <1> obj.dtype 
+
+        对象的元素类型
+
+        或 作为参数 dtype = np.bool
+
+        指定类型为 np.bool (全部转换为 True or False 的形式)
+
+            return [True,False,True,]
+
+    <2> obj.size
+        
+        obj ele 的个数
+
+    <3> obj.shape
+
+        每个维度上 元素的个数 (元祖)
+
+        np.shape(obj)
+
+    <4> obj.ndim
+
+        是几维的 (np特有,shape上有几个数,就是几维.pandas用)
+
+    <5> np.nan
+
+        空值 (NaN)
+
+
+
+四.1 普 通 创 建 方 法 :
+
+
+    <1> np.array([])
+
+        创 建 多 维 数 组 
+
+        注 意 :
+            
+        (1) [True,20,188.8] True/False turn to 1 or 0
+
+        (2) [True,20,188.8,'名字'] True/False turn to 'True' or /'False'
+
+                                   other trun to string
+
+
+    <2> np.arange()
+
+        区 间 取 值 单 维 
+
+        create a array (左闭右开)
+
+        和 range 的区别 :
+            
+        (1) arange() 跳步值可以是 小数
+
+        (2) arange() 是直接生成 列表,而 range() 是迭代器
+
+
+    <3> np.linspace()
+
+        等 份 取 值 单 维
+
+        linspace(start,stop,分为几份,endpoint = False)
+
+        示 例 :
+
+        np.linspace(1,10,4,endpoint=False)
+
+        表示不取10,也不取9,但计算上取9,把9分为4等份,1,3.25,5.5,7.75
+
+
+    <4> np.eye(n) or np.identity(n)
+
+        n * n 矩阵 对角线的角 是 1 , 其余值 0
+
+        np.eye(5)
+
+
+    <5> np.diag()
+
+        正方形 矩阵 参数1为 list or tuple
+
+        用其中元素 填充整个对角线
+
+        np.diag([1,2,3,4,5])
+
+        参 数 2 :
+            
+            正数 将元素线 向上挪正数个 位置 (原矩阵同时增加正数个大小)
+
+            负数 将元素线 向下挪正数个 位置 (原矩阵同时增加正数个大小)
+
+
+
+四.2 Shape 创 建 :
+
+
+    <1> np.zeros(shape)
+
+        用 shape 创建数组 填充 0 
+
+        np.zeros((2,2,2,2))
+    
+
+    <2> np.ones(shape)
+
+        用 shape 创建数组 填充 1
+
+        np.ones((2,2,2,2))
+
+
+    <3> np.empty(shape)
+
+        用 shape 创建数组 填充 垃圾值
+
+        np.empty((2,2,2,2))
+
+
+    <4> np.full(shape,val)
+
+        用 shape 创建数组, val 填充数据
+
+
+
+四.3 Like ndarray 创 建 :
+
+    
+    <1> np.ones_like(ndarray)
+
+        根据 其他ndarray 的形状 创建都是 1 的 ndarray
+
+        np.ones_like(tmp)
+
+
+    <2> np.zeros_like(ndarry)
+
+        根据 其他ndarray 的形状 创建都是 0 的 ndarray (实测为空字符串)
+
+        np.zeros_like(tmp)
+
+
+    <3> np.empty_like(ndarray)
+
+        根据 其他ndarray 的形状 创建都是 空 的 ndarray (实测为空字符串)
+
+        np.empty_like(ndarray)
+
+
+    <4> np.full_like(ndarray,val)
+
+        根据 其他ndarray 的形状, val 的内容,创建数组
+        
+
+
+五. np.random.
+
+
+    浮 点 数 :
+
+    <1> .uniform()
+
+        范围 和 shape
+
+        起始位置,结束位置,shape (shape 可选参数)
+
+        单 参 数 : stop       得到 1 个 number 参数以内的
+
+        双 参 数 : start stop 得到 1 个 区间内的
+
+        三 参 数 : start stop shape 得到区间内 shape 之后的
+
+        np.random.uniform(start,stop,shape)
+
+
+    整 数 : 
+
+    <2> .randint()
+
+        单 参 数 : 指定 stop 得到 1 个 该参数以内的
+
+        双 参 数 : start stop 得到 1 个 区间内的
+
+        三 参 数 : start stop shape 得到区间内 shape 之后的
+
+                   start stop number
+
+        np.random.randint(start,stop,shape)
+
+
+    特 殊 浮 点 数 : 获取 1 以下 shape 过的
+    
+    <3> .rand() 
+
+        1 以下 只用 shape 创建
+
+        np.random.rand(shape)
+
+        用 shape 创建 数字1 内的 浮点的 ndarray
+        
+
+    正 太 分 布 随 机 值 :
+
+    <1> np.random.randn(shape)
+
+        标准正太分布
+
+    <2> np.random.normal()
+        
+        双 参 数 : mean std 生成 1 个 正太分布数字
+
+        三 参 数 : 
+                (1) mean std number 生成 一维 number 个 正太分布的数字
+
+                (2) mean std shape  生成 经 shape 过的 指定图形的 正态数字
+
+
+    种 子 随 机 数 : 
+
+    <1> .seed(10)
+
+        语 法 : 先写 seed 再写其他随机函数
+
+        np.random.seed(which_seed)
+        np.random.randint(1,1000,(2,3))
+
+        准 则 : 种子函数和其他随机函数配对,无论如果调用,还是这个随机数.
+
+        参 数 : which_seed 指定这个种子的数字
+
+
+    其 他 随 机 函 数 :
+
+    <1> np.random.permutation(obj)
+
+        不 改 变 原 数 组 , 打 乱 最 外 维 度 的 顺 序 
+
+        obj.reindex(np.random.permutation(obj))
+
+            用在 pandas 上时,是打乱当前维度的顺序
+
+
+    <2> np.random.shuffle(obj)
+
+        改 变 原 数 组 , 其 他 和 permutation() 完全相同
+
+
+    <3> np.random.choice(obj,size,replace=True,p=None)
+
+        参 数 1 : obj 必须是一维的
+
+        参 数 2 : size = () 大小及维度 (不必须等于对象的维度或大小)
+
+        参 数 3 : replace = True or False 会不会到相同的
+
+        参 数 4 : p = res/np.sum(res) 需要为每个数字都指定概率,是个矩阵
+
+        注 意 : 抽取超过原数组大小时,给replace=False肯定会报错
+
+    <3> np.random.randing(0,7,size=10)
+
+        0 到 7 之间 ,取 10 个 数字类型
+
+
+
+六. 查 询 :
+
+
+    ndarray[1,2,3,4] 找多维度
+
+    <1> 取 单 维 连 续 多 值 :
+    
+        ndarray[[1,4,6]]
+
+        双 中 括 号
+
+        与python不同,可获取不连续多值
+
+
+    <2> 多 维 :
+
+        可以这么取 有一个 三维数组 a
+
+        a[0,0,0] 取一维中的 0 ,二维中的 0 ,三维中的 0
+
+
+    <3> a[:,1] 
+    
+        第一次取 取全部 , 第二次取 取全部中的 1 ,最后组成新 ndarray
+
+        
+    <4> np.where()
+
+        示 例 : 假设有一个 二维数组,np.where(a>2)
+
+        返回值: (array([],array[]))
+
+        第一个 array 是所有符合条件的 在第一维度上的索引
+
+        第二个 array 是所有符合条件的 在第二维度上的索引
+
+    <5> np.where() 似三元表达式版
+
+        示 例 : np.where(a>2,'符合条件','不符合条件')
+
+        参 数1: 条件判断表达式 
+
+        参 数2: 符合条件的数据,创建维度相同的新array,用什么替换原的数据
+
+        参 数3: 不符合条件结果,创建维度相同的新array,用什么值替换原数据
+        
+
+
+七. 维 度 变 换 :
+
+
+    ndarray 维度变换函数用于重构一个数组的形状 (只有二维的,2个中括号以上的可转)
+
+    <1> .reshape(shape)
+
+        返 回 个 新 的
+
+        返回一个 shape 形状的数组,修改视图,但不改变原数据
+
+        (1) 三维数组 第一个叫块,第二个行,第三个列(也就是具体数据)
+
+        (2) 块 * 行 * 列 = 元素总数
+
+        (3) shape 重构 必须保证元素总数是一致的
+
+        obj.redhape(shape)
+
+
+    <2> .resize(shape)
+
+        改 变 原 数 组 (其他同 reshape 相同)
+
+        将原数组修改为 shape 形状,修改视图,且修改原数组
+
+        obj.resize(shape)
+
+
+    <3> .flatten()
+
+        降 成 一 维
+
+        对数组降维,返回折叠后的一维数组,修改视图,不改变原数组
+
+        obj.flatten()
+
+
+
+八. Numpy 有 数 据 存 取 : (但别人不用)
+
+
+    <1> 暂 时 略 过

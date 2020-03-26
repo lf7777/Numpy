@@ -1,0 +1,31 @@
+一. 集 合 操 作 : (唯一化)
+
+
+    <1> np.unique(obj)
+
+        只 去 重 , 返 回 已 排 序 结 果 
+
+
+    <2> np.intersect1d(obj1,obj2) 
+
+        交 集 , 返 回 有 序 结 果 
+    
+    
+    <3> np.union1d(obj1,obj2) 
+
+        并 集 , 合 并 去 重 , 返 回 有 序 结 果 
+
+    
+    <4> np.setdiff1d(obj1,obj2) 
+
+        差 集 , obj1 有 obj2 没有的元素
+
+
+    <5> np.in1d(obj1,obj2) 
+
+        obj1 元素 是否在 obj2 中 , 返 回 布 尔 数 组 
+
+    
+    <6> np.setxor1d(obj1,obj2)
+
+        对 称 差 集 , obj1 和 obj2 各 自 特 有 的 
